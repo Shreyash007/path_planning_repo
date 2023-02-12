@@ -78,9 +78,11 @@ def breadthFirstSearch(problem):
           for state,action,cost in problem.getSuccessors(c_node[0]):
             if visited[state[0]][state[1]]==False:
               x+=1
-              print(visited)
               a=p+[action]
               cos1=cos+int(cost)
+              print(state)
+              print(a)
+              print(cos1)
               c=[state,a,cos1]
               fringe.append(c)
   
