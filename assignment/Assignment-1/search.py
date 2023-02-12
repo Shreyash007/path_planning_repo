@@ -19,7 +19,7 @@ def depthFirstSearch(problem):
   """
   "*** YOUR CODE HERE ***"
   print ("Start:", problem.getStartState())
-  closed=[]
+  visited=[[False for i in range(20)]for i in range(16)]
   x=0
   start=problem.getStartState()
   fringe=[[start,[],0]]
@@ -30,7 +30,7 @@ def depthFirstSearch(problem):
       c_node=fringe.pop()
       p=c_node[1]
       act=c_node[2]
-      closed.append(c_node[0])
+      #visited[c_node[0][0]][c_node[0][1]]=True
       #x+=1
       if problem.isGoalState(c_node[0]):
           print("Solution found")
@@ -39,13 +39,14 @@ def depthFirstSearch(problem):
           return c_node[1]    
       else:
           for state,action,cost in problem.getSuccessors(c_node[0]):
-            if state not in closed:
+            if visited[state[0]][state[1]]==False:
               x+=1
-              print(x)
               a=p+[action]
               act1=act+int(cost)
               c=[state,a,act1]
               fringe.append(c)
+              visited[state[0]][state[1]]=True
+              
  
 
 def breadthFirstSearch(problem):
@@ -66,8 +67,9 @@ def breadthFirstSearch(problem):
       c_node=fringe.pop(0)
       p=c_node[1]
       cos=c_node[2]
-      #closed.append(c_node[0])
       visited[c_node[0][0]][c_node[0][1]]=True
+      #closed.append(c_node[0])
+      
       #x+=1
       if problem.isGoalState(c_node[0]):
           print("Solution found")
@@ -80,11 +82,9 @@ def breadthFirstSearch(problem):
               x+=1
               a=p+[action]
               cos1=cos+int(cost)
-              print(state)
-              print(a)
-              print(cos1)
               c=[state,a,cos1]
               fringe.append(c)
+              visited[state[0]][state[1]]=True
   
 def uniformCostSearch(problem):
   """
