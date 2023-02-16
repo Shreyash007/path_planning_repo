@@ -120,8 +120,8 @@ class Maze:
 
 if __name__ == '__main__':
     
-    current_maze = Maze(1)
-    path = search.depthFirstSearch(current_maze)
+    current_maze = Maze(2)
+    path = search.uniformCostSearch(current_maze)
     if path:
         print('Found a path of %d moves: %s' % (len(path), str(path))) 
         #Display solution
